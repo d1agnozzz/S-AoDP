@@ -18,7 +18,7 @@ def is_diagonal_vacant(current_found_queens, x, y):
             return False
     return True
 
-def place_queens_reursively(current_found_queens, queen_counter):
+def place_queens_recursively(current_found_queens, queen_counter):
     found_queens_x = [position[0] for position in current_found_queens]
     found_queens_y = [position[1] for position in current_found_queens]
 
@@ -33,7 +33,7 @@ def place_queens_reursively(current_found_queens, queen_counter):
                         if is_diagonal_vacant(current_found_queens, x, y):
                             current_found_queens_copy = current_found_queens.copy()
                             current_found_queens_copy.append((x, y))
-                            place_queens_reursively(current_found_queens_copy[:], queen_counter + 1)
+                            place_queens_recursively(current_found_queens_copy[:], queen_counter + 1)
     else:
         if len(found_eight_queens) > 0:
             if set(current_found_queens) not in found_eight_queens:
@@ -42,12 +42,12 @@ def place_queens_reursively(current_found_queens, queen_counter):
             found_eight_queens.append(set(current_found_queens))
 
 
-def count_qeens_for_cords(x, y):
+def count_queens_for_cords(x, y):
     current_queens = [(x, y)]
-    return place_queens_reursively(current_queens, 1)
+    return place_queens_recursively(current_queens, 1)
 
 for i in range(8):
-    count_qeens_for_cords(i, 0)
+    count_queens_for_cords(i, 0)
 
 print("Solutions found:" + len(found_eight_queens))
 

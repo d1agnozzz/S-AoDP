@@ -19,7 +19,7 @@ def pretty_print_matrix(matrix):
 def floydWarshall(graph: Graph, v1: str, v2: str):
     dist = graph.generate_DataFrame()
 
-    vertices = graph.unique_vertices()
+    vertices = graph.vertices()
 
     for k in vertices:
         for i in vertices:
@@ -57,14 +57,14 @@ def dijkstra(graph: Graph, source: str, destination: str = None):
     df = graph.generate_DataFrame()
 
     
-    vertices = sorted(graph.unique_vertices())
+    vertices = sorted(graph.vertices())
     size = graph.size()
 
-    # array with shortest distations to points
+    # array with shortest distances to points
     dist = pd.Series([math.inf] * size, index = vertices)
     dist[source] = 0
     prev = pd.Series([None] * size, index = vertices)
-    # keep track of already found shortest distations
+    # keep track of already found shortest distances
     unchecked = pd.Series([True] * size, index = vertices)
 
     # repeat for every unchecked minimum current distance vertex
@@ -132,10 +132,10 @@ def bellmanFord(graph: Graph, source: str, destination: str = None):
     # convert to labeled adjacency matrix
     df = graph.generate_DataFrame()
 
-    vertices = sorted(graph.unique_vertices())
+    vertices = sorted(graph.vertices())
     size = graph.size()
 
-    # array for mimimal distances from source to other vertices
+    # array for minimal distances from source to other vertices
     dist = pd.Series([math.inf] * size, index = vertices)
     dist[source] = 0
 
@@ -185,14 +185,14 @@ def johnson(graph: Graph, v1: str = None, v2: str = None):
     # add extra vertex with edges with 0 weight to all original vertices
     mod_source = '@'
     modified.add_vertex(mod_source)
-    vertices = sorted(graph.unique_vertices())
+    vertices = sorted(graph.vertices())
     for v in vertices:
         modified.add_edge_oriented(mod_source, v, 0)
 
     # calculate bellman-ford table with that extra vertex as a source
     h = bellmanFord(modified, mod_source)
 
-    # remove that extra verex
+    # remove that extra vertex
     modified.remove_vertex(mod_source)
 
     # update weights with b.-ford table to avoid negative weights
@@ -201,7 +201,7 @@ def johnson(graph: Graph, v1: str = None, v2: str = None):
             new_weight = modified.get_dist(u, v) + h[u] - h[v]
             modified.add_edge_oriented(u, v, new_weight)
 
-    # use dejikstra for resulting modified graph 
+    # use dijkstra for resulting modified graph 
     if v1 != None:
         return dijkstra(modified, v1, v2)
     else:
@@ -238,7 +238,7 @@ def johnson(graph: Graph, v1: str = None, v2: str = None):
 
 def levit(graph: Graph, source: str, destination: str = None):
     df = graph.generate_DataFrame()
-    vertices = sorted(graph.unique_vertices())
+    vertices = sorted(graph.vertices())
     size = len(vertices)
 
     dist = pd.Series([math.inf] * size, index = vertices)

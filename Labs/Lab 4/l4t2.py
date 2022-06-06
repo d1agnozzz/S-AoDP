@@ -8,23 +8,22 @@ decrypted = "AAABBBCCCDDD"
 def decrypt(encrypted: str) -> str:
     decrypted = ""
     for char in encrypted:
-        while d.peekright() != char:
-            d.pushright(d.popleft())
-        # if d.peekright() == char:
-        d.pushright(d.popleft())
-        decrypted += d.peekleft()
-        d.pushleft(d.popright())
+        while d.peek_right() != char:
+            d.push_right(d.pop_left())
+        d.push_right(d.pop_left())
+        decrypted += d.peek_left()
+        d.push_left(d.pop_right())
     return decrypted
 
 
 def encrypt(decrypted: str) -> str:
     encrypted = ""
     for char in decrypted:
-        while d.peekleft() != char:
-            d.pushleft(d.popright())
-        d.pushleft(d.popright())
-        encrypted += d.peekright()
-        d.pushright(d.popleft())
+        while d.peek_left() != char:
+            d.push_left(d.pop_right())
+        d.push_left(d.pop_right())
+        encrypted += d.peek_right()
+        d.push_right(d.pop_left())
     return encrypted
 
 

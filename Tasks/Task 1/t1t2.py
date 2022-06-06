@@ -2,7 +2,7 @@ def longest_palindrome(s: str):
     palindromes = set()
     max_len = 0
     for i in range(len(s)):
-        for j in range(len(s)-1, i-1, -1):
+        for j in range(len(s)-1, i, -1):
             if s[i] == s[j] and i != j and j - i + 1 > max_len:
                 front = i
                 back = j

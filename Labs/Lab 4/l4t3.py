@@ -7,21 +7,21 @@ n = 6
 
 def move(a, b):
     if a.is_empty() and not b.is_empty():
-        a.pushright(b.popright())
+        a.push_right(b.pop_right())
     elif not a.is_empty() and b.is_empty():
-        b.pushright(a.popright())
-    elif a.peekright() > b.peekright():
-        a.pushright(b.popright())
+        b.push_right(a.pop_right())
+    elif a.peek_right() > b.peek_right():
+        a.push_right(b.pop_right())
     else:
-        b.pushright(a.popright())
+        b.push_right(a.pop_right())
 
 for i in range(n, 0, -1):
-    A.pushright(i)
+    A.push_right(i)
 
 start, dest, aux = A, C, B
 
 while not dest.is_empty():
-    print(dest.popright())
+    print(dest.pop_right())
 
 
 
@@ -41,4 +41,4 @@ if n % 2 == 0:
     aux = temp
 
 while not dest.is_empty():
-    print(dest.popright())
+    print(dest.pop_right())

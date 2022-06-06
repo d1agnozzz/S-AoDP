@@ -3,23 +3,23 @@ from ast import pattern
 
 
 def prefix_function(string: str) -> list[int]:
-    prefix_lenghts = [0] * len(string)
+    prefix_lengths = [0] * len(string)
 
     j = 0
     i = 1
     while i < len(string) and j < len(string):
         if string[i] == string[j]:
-            prefix_lenghts[i] = j + 1
+            prefix_lengths[i] = j + 1
             j += 1
             i += 1
         else:
             if j != 0:
-                j = prefix_lenghts[j - 1]
+                j = prefix_lengths[j - 1]
             else:
-                prefix_lenghts[i] = 0
+                prefix_lengths[i] = 0
                 i += 1
 
-    return prefix_lenghts
+    return prefix_lengths
 
 
 def kmp_find_pattern(_text: str, _pattern: str, case_sensitive = True) -> set[int]:
@@ -35,7 +35,7 @@ def kmp_find_pattern(_text: str, _pattern: str, case_sensitive = True) -> set[in
     pattern_prefixes = prefix_function(pattern)
 
     text_prefixes = [0] * len(text)
-    occurences_indexes = set()
+    occurrences_indexes = set()
 
     i = 0
     j = 0
@@ -44,7 +44,7 @@ def kmp_find_pattern(_text: str, _pattern: str, case_sensitive = True) -> set[in
             j += 1
             text_prefixes[i] = j
             if j == len(pattern):
-                occurences_indexes.add(i)
+                occurrences_indexes.add(i)
             j %= len(pattern)
             i += 1
         else:
@@ -55,7 +55,7 @@ def kmp_find_pattern(_text: str, _pattern: str, case_sensitive = True) -> set[in
                 i += 1
     print(text_prefixes)
     print(pattern_prefixes)
-    return occurences_indexes
+    return occurrences_indexes
 
 
 def get_offset_table(string: str) -> dict[str:int]:
@@ -84,7 +84,7 @@ def boyer_moore(_text: str, _pattern: str, case_sensitive = True) -> set[int]:
     #     text = _text
     #     pattern = _pattern
 
-    occurences_indexes = set()   
+    occurrences_indexes = set()   
     offset_table = get_offset_table(pattern)
 
     offset = 0
@@ -94,7 +94,7 @@ def boyer_moore(_text: str, _pattern: str, case_sensitive = True) -> set[int]:
         while backwards < len(pattern) and text[index + offset - backwards] == pattern[index - backwards]:
             backwards += 1
         if backwards == len(pattern):
-            occurences_indexes.add(index+offset)
+            occurrences_indexes.add(index+offset)
             offset += len(pattern)
         elif backwards > 0:
             offset += offset_table[pattern[-1]] 
@@ -105,7 +105,7 @@ def boyer_moore(_text: str, _pattern: str, case_sensitive = True) -> set[int]:
 
             else:
                 offset += len(pattern)
-    return occurences_indexes
+    return occurrences_indexes
 
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 def longest_unique(s):
-    max = str()
+    maxs = str()
     cur = str()
     for char in s:
         if char in cur:
@@ -7,10 +7,10 @@ def longest_unique(s):
 
         cur += char
 
-        if len(cur) > len(max):
-            max = cur
+        if len(cur) > len(maxs):
+            maxs = cur
 
-    return max, len(max)
+    return maxs, len(maxs)
 
 print(longest_unique('abcabcd'))
 print(longest_unique('bbbb'))

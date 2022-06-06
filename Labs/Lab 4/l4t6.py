@@ -10,74 +10,27 @@ with open('character_mess.txt', 'r') as f:
 
     for char in text:
         if char.isdigit():
-            nums.pushright(char)
+            nums.push_right(char)
             continue
         elif char.isalpha():
-            letters.pushright(char)
+            letters.push_right(char)
             continue
         else:
-            others.pushright(char)
+            others.push_right(char)
             continue
 
     reverse = stack()
     while not nums.is_empty():
-        reverse.pushright(nums.popright())
+        reverse.push_right(nums.pop_right())
     while not reverse.is_empty():
-        print(reverse.popright())
+        print(reverse.pop_right())
 
     while not letters.is_empty():
-        reverse.pushright(letters.popright())
+        reverse.push_right(letters.pop_right())
     while not reverse.is_empty():
-        print(reverse.popright())
+        print(reverse.pop_right())
 
     while not others.is_empty():
-        reverse.pushright(others.popright())
+        reverse.push_right(others.pop_right())
     while not reverse.is_empty():
-        print(reverse.popright())
-
-        
-
-
-
-
-# Old code with just one stack and temp list
-
-# s = stack()
-
-# with open('character_mess.txt', 'r') as f:
-#     text = ''.join(f)
-
-#     for char in text:
-#         if s.is_empty():
-#             s.pushright(char)
-#             continue
-
-#         if char.isdigit():
-#             if s.peekright().isdigit():
-#                 s.pushright()
-#             else:
-#                 temp = []
-#                 while not s.is_empty() and not s.peekright().isdigit():
-#                     temp.insert(0, s.popright())
-
-#                 s.pushright(char)
-
-#                 for element in temp:
-#                     s.pushright(element)
-        
-#         elif char.isalpha():
-#             if s.peekright().isalpha():
-#                 s.pushright(char)
-#             else:
-#                 temp = []
-#                 while not s.is_empty() and not s.peekright().isalpha():
-#                     temp.insert(0, s.popright())
-#                 s.pushright(char)
-#                 for element in temp:
-#                     s.pushright(element)
-
-#         else:
-
-#             s.pushright(char)
-
-#     print(''.join(s.content))
+        print(reverse.pop_right())

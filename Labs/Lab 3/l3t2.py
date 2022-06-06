@@ -38,7 +38,7 @@ def possible_moves(position):
 
 
 # fmt: off
-def manhatan(state):
+def manhattan(state):
     solved = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0)
     dist = 0
     for ind, (real, ideal) in enumerate(zip(state, solved)):
@@ -108,7 +108,7 @@ else:
         for position in possible_moves(current_state.position):
             if position not in visited:
                 new_candidate = (
-                    manhatan(position),
+                    manhattan(position),
                     Node(
                         position, current_state.distance_from_start + 1, current_state
                     ),
@@ -127,7 +127,7 @@ while current_state.position != start:
     prev = current_state
 path.reverse()
 
-print(f"Starting posotion: \n{Node(start, 0, None)}")
+print(f"Starting position: \n{Node(start, 0, None)}")
 print()
 
 print(f"Path: \n{path}")

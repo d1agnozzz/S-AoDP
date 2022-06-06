@@ -7,10 +7,10 @@ with open("materials\\unbalanced_2.py", 'r') as f:
     for line in f:
         for char in line:
             if char == '(':
-                brackets.pushright("(") 
+                brackets.push_right("(") 
             elif char == ')':
                 if not brackets.is_empty():
-                    brackets.popright()
+                    brackets.pop_right()
                 else:
                     balanced = False
                     break 

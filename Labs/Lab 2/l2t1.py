@@ -56,7 +56,7 @@ def fibonacciSearch(array: list[int], element: int):
         if index < len(array) and array[index] == element:
             return fibMm2 + offset
         if index >= len(array) or array[index] < element:
-            if index < len(array):  # do NOT cange offset when edge case (right corner)
+            if index < len(array):  # do NOT change offset when edge case (right corner)
                 offset = offset + fibMm2
             fibM = fibMm1
             fibMm1 = fibMm2

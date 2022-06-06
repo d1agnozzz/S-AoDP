@@ -8,13 +8,13 @@ class stack:
     def is_empty(self):
         return len(self.content) == 0
     
-    def pushright(self, element):
+    def push_right(self, element):
         self.content.append(element)
 
-    def popright(self):
+    def pop_right(self):
         return self.content.pop()
 
-    def peekright(self):
+    def peek_right(self):
         return self.content[-1]
     
     def __str__(self) -> str:
@@ -23,12 +23,12 @@ class stack:
 
 class deque(stack):
 
-    def pushleft(self, element):
+    def push_left(self, element):
         self.content.insert(0, element)
     
-    def popleft(self):
+    def pop_left(self):
         return self.content.pop(0)
         
 
-    def peekleft(self):
+    def peek_left(self):
         return self.content[0]

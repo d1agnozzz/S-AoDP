@@ -55,20 +55,20 @@ class Graph:
             return self._graph_dict[vertex1][vertex2]
 
     def size(self):
-        return len(self.unique_vertices())
+        return len(self.vertices())
 
-    def unique_vertices(self):
-        unique_verteces = set()
+    def vertices(self) -> set:
+        vertices = set()
 
         for key, value in self._graph_dict.items():
-            unique_verteces.add(key)
+            vertices.add(key)
             for v, w in value.items():
-                unique_verteces.add(v)
+                vertices.add(v)
 
-        return unique_verteces
+        return vertices
 
     def generate_matrix(self):
-        vertices = sorted(list(self.unique_vertices()))
+        vertices = sorted(list(self.vertices()))
 
         size = len(vertices)
 
@@ -86,12 +86,11 @@ class Graph:
         return matrix
 
     def generate_DataFrame(self):
-        vertices = sorted(list(self.unique_vertices()))
+        vertices = sorted(list(self.vertices()))
 
         df = DataFrame(self._graph_dict)
 
-        
-        for vertex in self.unique_vertices():
+        for vertex in self.vertices():
             # when there is no connection to or from point, add blank columns and rows
             if vertex not in df.columns:
                 df.insert(0, vertex, math.inf)
@@ -123,30 +122,30 @@ class Graph:
 
     def from_DataFrame(self, df):
         self._graph_dict.clear()
-        
+
         for index in df.index:
             self.add_vertex(str(index))
 
-        vertices = self.unique_vertices()
+        vertices = self.vertices()
 
         for u in vertices:
             for v in vertices:
-                if df.at[u,v] != 0 and not isna(df.at[u, v]):
+                if df.at[u, v] != 0 and not isna(df.at[u, v]):
                     self.add_edge_oriented(u, v, df.at[u, v])
 
     def __copy__(self):
         cls = self.__class__
-        newone = cls.__new__(cls)
-        newone.__dict__.update(self.__dict__)
-        return newone
+        new_one = cls.__new__(cls)
+        new_one.__dict__.update(self.__dict__)
+        return new_one
 
     def __deepcopy__(self, memo):
         cls = self.__class__
-        newone = cls.__new__(cls)
-        memo[id(self)] = newone
+        new_one = cls.__new__(cls)
+        memo[id(self)] = new_one
         for k, v in self.__dict__.items():
-            setattr(newone, k, deepcopy(v, memo))
-        return newone
+            setattr(new_one, k, deepcopy(v, memo))
+        return new_one
 
 
 if __name__ == "__main__":

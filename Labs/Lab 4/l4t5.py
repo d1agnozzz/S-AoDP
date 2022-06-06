@@ -6,10 +6,10 @@ with open("unbalanced.py", 'r') as f:
     for line in f:
         for char in line:
             if char == '[':
-                brackets.pushleft(char)
+                brackets.push_left(char)
             elif char == ']':
-                brackets.pushright(char)
-    while not brackets.is_empty() and brackets.peekleft() == '[' and brackets.peekright() == ']':
-        brackets.popleft()
-        brackets.popright()
+                brackets.push_right(char)
+    while not brackets.is_empty() and brackets.peek_left() == '[' and brackets.peek_right() == ']':
+        brackets.pop_left()
+        brackets.pop_right()
     print( brackets.is_empty())

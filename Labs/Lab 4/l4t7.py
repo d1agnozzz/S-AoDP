@@ -9,10 +9,10 @@ with open('materials\integers.txt', 'r') as f:
     text = f.read().splitlines()
     for num in text:
         if int(num) >= 0:
-            positive.pushright(int(num))
+            positive.push_right(int(num))
         elif int(num) < 0:
-            negative.pushright(int(num))
+            negative.push_right(int(num))
     while not negative.is_empty():
-        print(negative.popleft())
+        print(negative.pop_left())
     while not positive.is_empty():
-        print(positive.popleft())
+        print(positive.pop_left())
