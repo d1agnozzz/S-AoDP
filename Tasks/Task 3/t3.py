@@ -3,9 +3,9 @@
 def get_dividers(number):
     result = list()
     for sys in range(2, 10**6):
-        first = convert_to_pseudosystem(number, sys)
+        first = convert_to_system(number, sys)
         for divider in range(2, number):
-            second = convert_to_pseudosystem(divider, sys)
+            second = convert_to_system(divider, sys)
             if first % second == 0:
                 result.append((sys, divider))
 

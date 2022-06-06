@@ -35,11 +35,21 @@ def maximize(ints):
 
     for num in ints:
         result += str(num)
-    
+        
     result = result.lstrip('0')
 
     return result if result != '' else '0'
 
+def better(a):
+    max_len = len(str(max(a)))
+    strings = list(map(str, a))
+    
+    strings = sorted(strings, key = lambda s: s + s[-1] * (max_len - len(s)), reverse=True)
+    return ''.join(strings)
+
+
 print(maximize([5, 3, 30, 34, 5, 9]))
+print(better([5, 3, 30, 34, 5, 9]))
 print(maximize([0, 0]))
 print(maximize([34323, 3432]))
+print(better([34323, 3432]))

@@ -9,8 +9,8 @@ def prefix_function(string: str) -> list[int]:
     i = 1
     while i < len(string) and j < len(string):
         if string[i] == string[j]:
+            prefix_lenghts[i] = j + 1
             j += 1
-            prefix_lenghts[i] = j
             i += 1
         else:
             if j != 0:
@@ -59,35 +59,32 @@ def kmp_find_pattern(_text: str, _pattern: str, case_sensitive = True) -> set[in
 
 
 def get_offset_table(string: str) -> dict[str:int]:
-    offsets = {}
-    table = [0] * len(string)
+    offsets = dict()
 
     for i in range(len(string) - 2, -1, -1):
         char = string[i]
         offset = len(string) - i - 1
-        if char in offsets.keys():
-            table[i] = offsets[char]
-        else:
+        if char not in offsets.keys():
             offsets[char] = offset
-            table[i] = offsets[char]
-    if string[-1] in offsets.keys():
-        table[-1] = offsets[string[-1]]
-        return offsets
-    else:
+
+    if string[-1] not in offsets.keys():
         offsets[string[-1]] = len(string)
-        table[-1] = len(string)
-        return offsets
+    
+    return offsets
+
+print(get_offset_table('данные'))
+pass
 
 
 def boyer_moore(_text: str, _pattern: str, case_sensitive = True) -> set[int]:
-    if not case_sensitive:
-        text = _text.lower()
-        pattern = _pattern.lower()
-    else:
-        text = _text
-        pattern = _pattern
+    # if not case_sensitive:
+    #     text = _text.lower()
+    #     pattern = _pattern.lower()
+    # else:
+    #     text = _text
+    #     pattern = _pattern
 
-    occurences_indexes = set()
+    occurences_indexes = set()   
     offset_table = get_offset_table(pattern)
 
     offset = 0

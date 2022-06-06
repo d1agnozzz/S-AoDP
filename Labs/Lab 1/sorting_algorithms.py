@@ -77,21 +77,33 @@ def quickSort(array):
     if len(array) <= 1:
         return array
 
-    less = []
-    equal = []
-    more = []
     size = len(array)
     pivot = array[size // 2]
-    for num in array:
-        if num < pivot:
-            less.append(num)
-        elif num == pivot:
-            equal.append(num)
-        else:
-            more.append(num)
+    # less = []
+    # equal = []
+    # more = []
+    # for num in array:
+    #     if num < pivot:
+    #         less.append(num)
+    #     elif num == pivot:
+    #         equal.append(num)
+    #     else:
+    #         more.append(num)
+    less = list(filter(lambda x: x < pivot, array))
+    equal = list(filter(lambda x: x == pivot, array))
+    more = list(filter(lambda x: x > pivot, array))
+
     less = quickSort(less)
     more = quickSort(more)
     return less + equal + more
+
+
+a = [randint(0, 10) for i in range(10)]
+print(a)
+print(quickSort(a))
+print()
+
+pass
 
 
 def heapify(array, length, i):

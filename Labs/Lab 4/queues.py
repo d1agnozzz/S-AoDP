@@ -7,9 +7,6 @@ class stack:
     
     def is_empty(self):
         return len(self.content) == 0
-        if len(self.content) == 0:
-            return True
-        return False
     
     def pushright(self, element):
         self.content.append(element)

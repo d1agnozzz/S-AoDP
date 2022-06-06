@@ -18,14 +18,12 @@ def longest_perimeter(lengths):
         if validate_triangle(candidates):
             return sum(candidates)
         maxi = candidates.index(max(candidates))
-        candidates[maxi] = sorted_lens[-1]
+        candidates[maxi] = sorted_lens.pop()
     
     return 0
         
 
-a = [2, 2, 3, 4]
-
-longest_perimeter(a)
+print(longest_perimeter([1, 2, 3, 4, 5, 5, 10]))
         
 
     

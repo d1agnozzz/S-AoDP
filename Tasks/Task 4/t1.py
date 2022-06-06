@@ -1,24 +1,16 @@
-def longest_unique(string: str):
-    maxs = str()
-    maxlen = 0
+def longest_unique(s):
+    max = str()
     cur = str()
-    curlen = 0
-    uniques = set()
-    for ind, char in enumerate(string):
-        if char in uniques:
+    for char in s:
+        if char in cur:
             cur = str()
-            curlen = 0
-            uniques = set()
 
         cur += char
-        curlen += 1
-        uniques.add(char)
-        
-        if curlen > maxlen:
-                maxs = cur
-                maxlen = curlen
 
-    return maxs, maxlen
+        if len(cur) > len(max):
+            max = cur
+
+    return max, len(max)
 
 print(longest_unique('abcabcd'))
 print(longest_unique('bbbb'))
